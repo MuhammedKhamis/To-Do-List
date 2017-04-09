@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>TO-DO</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index.css">
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+  <!--  <script type="text/javascript" src="js/helpers/jquery-latest.js"></script>
+    <script type="text/javascript" src="js/helpers/jquery.tablesorter.js"></script>-->
+
+</head>
+<body>
+	<div id="wrapper">
+        <div class="overlay"></div>
+    
+        <!-- Sidebar -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+            <ul class="nav sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                       Menu
+                    </a>
+                </li>
+                <li>
+                    <a href="#">All Tasks      <span class="badge" id="ALL-B">0</span></a>
+                </li>
+                <li>
+                    <a href="#">Completed      <span class="badge" id="C-B">0</span></a>
+                </li>
+                <li>
+                    <a href="#">In Progress     <span class="badge" id="P-B">0</span></a>
+                </li>
+                <li>
+                    <a href="#">Archive         <span class="badge" id="A-B">0</span></a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+
+            </ul>
+        </nav>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <button type="button" class="hamburger is-closed" data-toggle="offcanvas" id="menu">
+                <span class="hamb-top"></span>
+    			<span class="hamb-middle"></span>
+				<span class="hamb-bottom"></span>
+            </button>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+	<p style="margin-left: 82%;" id="username">Logged in as: </p>
+	<form action="http://127.0.0.1:8081/logout" id="logoutform" method="post">
+		<button type="submit" id="logout" class="btn btn-info" style="margin-left: 82%; width: 10%; float: left;">Log out</button>
+    </form>
+	<br>
+	<h1 align="center">ALL TASKS</h1>
+
+	<hr/>
+	<input id="search" placeholder="Search" type="text" class="form-control" style="margin-left: 78%; width: 10%; float: left;"/>
+    <button type="button" id="clearSearch" class="btn btn-default" style=" float: left">Clear</button>
+
+	<div class="container">
+	  <table class="table table-hover" id="table">
+	  	<col width="5%" />
+		<col width="10%" />
+		<col width="75%" />
+		<col width="10%" />
+		
+	    <thead>
+	      <tr class="table-header">
+	      	<th><input type="checkbox" id="selectAll"></th>
+	      	<th title="DD/MM/YYYY"><a>Date</a></th>
+	        <th><a>Title</a></th>
+	        <th></th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      
+	    </tbody>
+	  </table>
+	</div>
+	
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="margin-left: 10%" id="addNewTask">New Task</button>
+	<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal2" style="margin-left: 10%" id="deleteAll">Delete Selected</button>
+	
+	<div id="myModal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+
+	<!-- Modal content-->
+	<div class="modal-content" id="newTaskModal">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title">New Task</h4>
+		</div>
+		<form>
+			<div class="form-group" style="margin: 5%"> 
+			  <label for="title">Title:</label>
+			  <input type="text" class="form-control required" id="title" required>
+			</div>
+			<div class="form-group" style="margin: 5%">
+			  <label for="date">Date:</label>
+			  <input type="date" class="form-control" id="date">
+			</div>
+			
+			 <div class="form-group" style="margin: 5%">
+			  <label for="details">Details:</label>
+			  <textarea class="form-control" rows="5" id="details" style="resize: none"></textarea>
+			</div>
+		
+		<div class="modal-footer">
+			<input type="submit" class="btn btn-success" id="newTask" value="Confirm">
+			<button type="button" class="btn btn-default" id="cancel" data-dismiss="modal">Cancel</button>
+		</div>
+        </form>
+    </div>
+        
+  </div>
+</div>
+
+
+	<div id="myModal2" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+
+	<!-- Modal content-->
+	<div class="modal-content">
+		<div class="modal-body">
+			<p>Are you sure you want to delete the selected tasks?</p>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-danger" id="deleteSelected" data-dismiss="modal">Yes</button>
+			<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+		</div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

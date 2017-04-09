@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>TO-DO</title>
+	<link rel="icon" href="">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index.css">
+	<link href="css/signin.css" rel="stylesheet">
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="js/formValidation.js"></script>
+	<script>
+	$(document).ready(function (){
+			$.ajax({
+				type: 'POST',
+				url: '/request',
+				success: function(data) {
+							if (data[0] == true){
+								
+								$("#login").click();
+								$("#error").text("Invalid email/password.");
+								$("#error").css({ 'color': 'red' });
+							}
+							else if (data[1] == true){
+								
+								$("#signup").click();
+								$("#error2").text("A user is already registered with this email.");
+								$("#error2").css({ 'color': 'red' });
+							}
+							else if (data[2] == true){
+								
+								$("#login").click();
+								$("#error").text("Successfuly Registered.");
+								$("#error").css({ 'color': 'green' });
+							}
+						}	
+			
+			
+			});
+        $('.cancel').click(function(e){
+            $("#inputEmail").val('');
+            $("#inputPassword").val('');
+            $("#firstname").val('');
+            $("#email").val('');
+            $("#password").val('');
+        });
+
+	});
+	</script>
+	
+</head>
+<body>
+
+	<br/><br/><br/>
+	<h1 align="center">Welcome to TODO List</h1>
+	<br/><br/>
+	<div style="margin: 0 auto; width: 10%">
+		<input type="submit" class="btn btn-primary form-control" name="login" id="login" data-toggle="modal" data-target="#myModal1" value="Sign In">
+		<br/>
+		<br/>
+		<input type="submit" class="btn btn-info form-control" name="signup" id="signup" data-toggle="modal" data-target="#myModal2" value="Register">
+	</div>
+	
+	
+	
+	<div id="myModal1" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<form class="form-signin" action="http://127.0.0.1:8081/login" method="post">
+					<div class="modal-body">
+						
+							<h2 class="form-signin-heading">Please sign in</h2><br/>
+							<h4 id="error"></h4><br/>
+							<label for="inputEmail" class="sr-only">Email address</label>
+							<input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" required autofocus><br>
+							<label for="inputPassword" class="sr-only">Password</label>
+							<input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+							<div class="checkbox">
+							  <label>
+								<input type="checkbox" value="remember-me"> Remember me
+							  </label>
+							</div>
+							<br/>
+							<button class="btn btn-primary btn-block" type="submit">Sign in</button>
+							<button type="submit" class="btn-block btn btn-default cancel" data-dismiss="modal">Cancel</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div id="myModal2" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-body">
+					
+					<form action="http://127.0.0.1:8081/register" method="post" id="register-form" class="form-signin" novalidate="novalidate">
+  
+						<h2 class="form-signin-heading">Register</h2><br/>
+						<h4 id="error2"></h4><br/>
+						<input type="text" id="firstname" name="firstname" class="form-control" placeholder="Name" required autofocus>
+						<br/>
+						<label for="email" class="sr-only">Email address</label>
+						<input type="text" id="email" name="email" class="form-control" placeholder="Email address" required>
+						<br/>
+						<label for="password" class="sr-only">Password</label>
+						<input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+						<br/><br/>
+						<button class="btn btn-primary btn-block" type="submit">Submit</button>
+						<button type="submit" class="btn-block btn btn-default cancel" data-dismiss="modal">Cancel</button>
+						
+					</form>
+						
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
